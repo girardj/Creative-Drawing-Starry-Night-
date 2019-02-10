@@ -107,6 +107,7 @@ int x = 0;
         //tree's leaves
         g.setColor(Color.white);
         g.fillOval(400,50, 75, 75);
+        //white part of moon
         g.fillOval(300,50, 2, 2);
         g.fillOval(200,80, 2, 2);
         g.fillOval(350,90, 2, 2);
@@ -117,7 +118,7 @@ int x = 0;
         g.fillOval(400,300, 2, 2);
         g.fillOval(370,250, 2, 2);
         g.fillOval(305,280, 2, 2);
-        //white part of moon
+        //Stars
         
         g.setColor(Color.black);
         g.fillOval(420,50, 75, 75);
@@ -144,7 +145,7 @@ beforeTime = System.currentTimeMillis();
             System.currentTimeMillis();
     while (true) {//infinite loop
      // spriteManager.update();
-      //repaint();
+      //repaint(); Commented so stars stay on screen and don't disapear
       try {
         time += animationDelay;
         Thread.sleep(Math.max(0,time - 
@@ -163,6 +164,7 @@ public void mousePressed(MouseEvent e) {
     Graphics g = getGraphics();
     g.setColor(Color.white);
     g.fillOval(x, y,2,2);
+    //make stars appear wherever screen is clicked
 }
 
 public void mouseReleased(MouseEvent e) {
@@ -179,6 +181,6 @@ public void mouseExited(MouseEvent e) {
 
 public void mouseClicked(MouseEvent e) {
 
-}//creates stars when screen is clicked
+}
 
 }//end of class
