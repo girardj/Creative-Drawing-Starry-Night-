@@ -1,0 +1,184 @@
+   import javax.swing.JFrame;
+
+public class StarterFace extends JFrame {
+
+    public StarterFace()
+    {
+        add(new MouseListenerOval());
+        setTitle("Board");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(500,500);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setResizable(false);
+    }
+
+    public static void main(String[] args) {
+        new StarterFace();
+    }
+}
+
+
+
+
+
+
+
+
+
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.Timer;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.imageio.*;
+import java.awt.image.*;
+import java.io.*;
+import java.util.Scanner;
+
+
+public class MouseListenerOval  extends JPanel implements Runnable, MouseListener
+{
+
+private Dimension d;
+int BOARD_WIDTH=500;
+int BOARD_HEIGHT=500;
+int x = 0;
+ private Thread animator;
+
+ 
+    public MouseListenerOval()
+    {
+          addMouseListener(this);
+        setFocusable(true);
+        d = new Dimension(BOARD_WIDTH, BOARD_HEIGHT);
+       
+        if (animator == null ) {
+            animator = new Thread(this);
+            animator.start();
+        }
+                    
+        setDoubleBuffered(true);
+         }
+    
+  
+
+
+
+  public void paint(Graphics g){
+      super.paint(g);
+      g.setColor(Color.black);
+      g.fillRect(0, 0, d.width, d.height);
+        //sky
+        g.setColor(Color.green);
+        g.fillRect(0,400, 500, 500);
+        //grass
+        Color brown = new Color(101, 0, 0);
+        g.setColor(brown);
+        g.fillRect(110,230,30,200);
+        // Tree trunk
+        g.setColor(Color.green);
+        g.fillOval(100,230, 100, 50);
+        g.fillOval(50,230, 100, 50);
+        g.fillOval(75,260, 100, 50);
+        g.fillOval(75,210, 100, 50);
+        g.fillOval(50,210, 100, 50);
+        g.fillOval(50,190, 100, 50);
+        g.fillOval(50,170, 100, 50);
+        g.fillOval(75,230, 100, 50);
+        g.fillOval(75,200, 100, 50);
+        g.fillOval(75,170, 100, 50);
+        g.fillOval(75,150, 100, 50);
+        g.fillOval(100,210, 100, 50);
+        g.fillOval(100,190, 100, 50);
+        g.fillOval(100,170, 100, 50);
+        //tree's leaves
+        g.setColor(Color.white);
+        g.fillOval(400,50, 75, 75);
+        g.fillOval(300,50, 2, 2);
+        g.fillOval(200,80, 2, 2);
+        g.fillOval(350,90, 2, 2);
+        g.fillOval(100,140, 2, 2);
+        g.fillOval(190,128, 2, 2);
+        g.fillOval(260,140, 2, 2);
+        g.fillOval(295,140, 2, 2);
+        g.fillOval(400,300, 2, 2);
+        g.fillOval(370,250, 2, 2);
+        g.fillOval(305,280, 2, 2);
+        //white part of moon
+        
+        g.setColor(Color.black);
+        g.fillOval(420,50, 75, 75);
+        //black part of moon
+
+        g.setColor(Color.white);
+        g.setFont (new Font("TimesRoman", Font.PLAIN, 40));
+        g.drawString("Starry Night" ,  20,  100);
+        //title of project is "Starry Night"
+        
+      
+       Toolkit.getDefaultToolkit().sync();
+        g.dispose();
+}
+
+
+public void run() {
+
+long beforeTime, timeDiff, sleep;
+
+beforeTime = System.currentTimeMillis();
+ int animationDelay = 500;
+ long time = 
+            System.currentTimeMillis();
+    while (true) {//infinite loop
+     // spriteManager.update();
+      //repaint();
+      try {
+        time += animationDelay;
+        Thread.sleep(Math.max(0,time - 
+          System.currentTimeMillis()));
+      }catch (InterruptedException e) {
+        System.out.println(e);
+      }//end catch
+    }//end while loop
+
+}//end of run
+
+public void mousePressed(MouseEvent e) {
+    int x = e.getX();
+    int y = e.getY();
+    setVisible(true); 
+    Graphics g = getGraphics();
+    g.setColor(Color.white);
+    g.fillOval(x, y,2,2);
+}
+
+public void mouseReleased(MouseEvent e) {
+
+}
+
+public void mouseEntered(MouseEvent e) {
+
+}
+
+public void mouseExited(MouseEvent e) {
+
+}
+
+public void mouseClicked(MouseEvent e) {
+
+}//creates stars when screen is clicked
+
+}//end of class
